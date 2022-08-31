@@ -1,0 +1,13 @@
+El proyecto "Common.Api.Graphql" tiene las referencias de paquete siguientes
+   [net6.0]: 
+   Paquete de nivel superior                    Solicitado   Resuelto
+   > HotChocolate.AspNetCore                    12.12.1      12.12.1 
+   > HotChocolate.AspNetCore.Authorization      12.12.1      12.12.1 
+   > HotChocolate.Data                          12.12.1      12.12.1 
+   > HotChocolate.Data.EntityFramework          12.12.1      12.12.1 
+   > Microsoft.EntityFrameworkCore              6.0.8        6.0.8   
+   > Microsoft.EntityFrameworkCore.Design       6.0.8        6.0.8   
+   > Microsoft.EntityFrameworkCore.Tools        6.0.8        6.0.8   
+   > Npgsql.EntityFrameworkCore.PostgreSQL      6.0.6        6.0.6   
+   > Swashbuckle.AspNetCore                     6.2.3        6.2.3   
+
