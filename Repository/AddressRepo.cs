@@ -7,8 +7,8 @@ namespace Common.Api.Graphql.Repository
 {
     public interface IAddressRepo
     {
-        IQueryable<Address> GetQueryableByPersonId(int personId);
-        //Task<AddressDto> GetById(int id);
+        //IQueryable<Address> GetQueryableByPersonId(int personId);
+        Task<AddressDto> GetById(int id);
         Task<IEnumerable<AddressDto>> GetManyByIds(IReadOnlyList<int> Ids);
     }
 
@@ -21,26 +21,26 @@ namespace Common.Api.Graphql.Repository
             this.dbcContextFactory = dbcContextFactory;
         }
 
-        public IQueryable<Address> GetQueryableById(int id)
-        {
-            using (AppDbContext context = dbcContextFactory.CreateDbContext())
-            {
-                return context.Addresses.Where(a => a.Id == id);
-            }
-        }
+        //public IQueryable<Address> GetQueryableById(int id)
+        //{
+        //    using (AppDbContext context = dbcContextFactory.CreateDbContext())
+        //    {
+        //        return context.Addresses.Where(a => a.Id == id);
+        //    }
+        //}
 
-        public IQueryable<Address> GetQueryableByPersonId(int personId)
-        {
-            using (AppDbContext context = dbcContextFactory.CreateDbContext())
-            {
-                return context.Addresses.Where(a => a.PersonId == personId);
-            }
-        }
+        //public IQueryable<Address> GetQueryableByPersonId(int personId)
+        //{
+        //    using (AppDbContext context = dbcContextFactory.CreateDbContext())
+        //    {
+        //        return context.Addresses.Where(a => a.PersonId == personId);
+        //    }
+        //}
 
         public async Task<AddressDto> GetById(int id)
         {
             var res = await GetManyByIds(new int[] { id });
-            return res?.FirstOrDefault();
+            return res?.FirstOrDefault()!;
         }
 
         public async Task<IEnumerable<AddressDto>> GetManyByIds(IReadOnlyList<int> Ids)
