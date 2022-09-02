@@ -2,7 +2,7 @@
 {
     public class Query
     {
-        [GraphQLDeprecated("This query is deprecated.")]
-        public string Instructions => "Smash that like button and subscribe to ";
+        //[GraphQLDeprecated("This query is deprecated.")]
+        public string IsWorking => "Api Graphql Running";
     }
 }

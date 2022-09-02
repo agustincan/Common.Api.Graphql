@@ -22,6 +22,67 @@ namespace Common.Api.Graphql.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Common.Api.Graphql.Persistence.Models.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool?>("Active")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<int?>("Number")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("PersonId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ZipCode")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            Name = "Address 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = true,
+                            Name = "Address 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Active = true,
+                            Name = "Address 3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Active = true,
+                            Name = "Address 4"
+                        });
+                });
+
             modelBuilder.Entity("Common.Api.Graphql.Persistence.Models.CorrectiveAction", b =>
                 {
                     b.Property<int>("Id")
@@ -69,6 +130,55 @@ namespace Common.Api.Graphql.Migrations
                             Id = 4,
                             Active = true,
                             Description = "Obra"
+                        });
+                });
+
+            modelBuilder.Entity("Common.Api.Graphql.Persistence.Models.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool?>("Active")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("Persons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            Name = "Person 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = true,
+                            Name = "Person 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Active = true,
+                            Name = "Person 3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Active = true,
+                            Name = "Person 4"
                         });
                 });
 
@@ -156,6 +266,20 @@ namespace Common.Api.Graphql.Migrations
                             Active = true,
                             Description = "Reposición"
                         });
+                });
+
+            modelBuilder.Entity("Common.Api.Graphql.Persistence.Models.Address", b =>
+                {
+                    b.HasOne("Common.Api.Graphql.Persistence.Models.Person", "Person")
+                        .WithMany("Adresses")
+                        .HasForeignKey("PersonId");
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("Common.Api.Graphql.Persistence.Models.Person", b =>
+                {
+                    b.Navigation("Adresses");
                 });
 #pragma warning restore 612, 618
         }

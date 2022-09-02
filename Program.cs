@@ -1,5 +1,7 @@
 using Common.Api.Graphql.Graphql;
+using Common.Api.Graphql.Graphql.AddressSchema;
 using Common.Api.Graphql.Graphql.CorrectiveActionSchema;
+using Common.Api.Graphql.Graphql.PersonSchema;
 using Common.Api.Graphql.Graphql.PreventiveActionSchema;
 using Common.Api.Graphql.Persistence;
 using Common.Api.Graphql.Repository;
@@ -23,10 +25,17 @@ builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>()
+
     .AddType<CorrectiveActionType>()
     .AddType<PreventiveActionType>()
+    .AddType<PersonType>()
+    .AddType<AddressType>()
+
     .AddTypeExtension<CorrectiveActionQuery>()
     .AddTypeExtension<PreventiveActionQuery>()
+    .AddTypeExtension<PersonQuery>()
+    .AddTypeExtension<AddressQuery>()
+
     .AddTypeExtension<CorrectiveActionMutation>()
     .AddProjections()
     .AddFiltering()
@@ -34,6 +43,8 @@ builder.Services
     .AddAuthorization();
 
 builder.Services.AddScoped<ICorrectiveActionRepo, CorrectiveActionRepo>();
+builder.Services.AddScoped<IPreventiveActionRepo, PreventiveActionRepo>();
+builder.Services.AddScoped<IPersonRepo, PersonRepo>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -13,6 +13,8 @@ namespace Common.Api.Graphql.Persistence
 
         public DbSet<CorrectiveAction> CorrectiveActions { get; set; }
         public DbSet<PreventiveAction> PreventiveActions { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +27,9 @@ namespace Common.Api.Graphql.Persistence
         {
             new CorrectiveActionConfiguration(modelBuilder.Entity<CorrectiveAction>());
             new PreventiveActionConfiguration(modelBuilder.Entity<PreventiveAction>());
+
+            new PersonConfiguration(modelBuilder.Entity<Person>());
+            new AddressConfiguration(modelBuilder.Entity<Address>());
         }
     }
 }
