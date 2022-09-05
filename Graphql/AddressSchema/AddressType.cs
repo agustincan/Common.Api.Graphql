@@ -13,15 +13,6 @@ namespace Common.Api.Graphql.Graphql.AddressSchema
             descriptor.Field(d => d.Number);
             descriptor.Field(d => d.ZipCode);
             descriptor.Field(d => d.PersonId).IsProjected(true);
-        //    descriptor.Field(d => d.Person)
-        //        .ResolveWith<Resolvers>(c => c.GetPerson(default!, default!));
-        }
-        private class Resolvers
-        {
-            public Person GetPerson([Parent] Address command, [ScopedService] AppDbContext context)
-            {
-                return context.Persons.FirstOrDefault(p => p.Id == command.PersonId)!;
-            }
         }
     }
 }
